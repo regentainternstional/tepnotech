@@ -22,7 +22,7 @@ app.use(express.json());
 
 app.post("/create-order", async (req, res) => {
   console.log("order is creating");
-  const { order_id, amount, name, email, phone } = req.body;
+  const { order_id, amount, name, phone } = req.body;
 
   try {
     const response = await axios.post(
@@ -34,8 +34,8 @@ app.post("/create-order", async (req, res) => {
         customer_details: {
           customer_id: order_id,
           customer_name: name,
-          customer_email: email,
-          customer_phone: phone,
+          // customer_email: email,
+          // customer_phone: phone,
         },
       },
       {
