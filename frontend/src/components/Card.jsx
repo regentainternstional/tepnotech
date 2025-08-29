@@ -1,13 +1,15 @@
+import React, { useState } from "react";
 import img1 from "../assets/img1.webp";
 import img2 from "../assets/img2.webp";
 import img3 from "../assets/img3.webp";
 import img4 from "../assets/img4.webp";
-import React, { useState } from "react";
 import Btn from "./Btn";
-import Form from "./Form";
+import { useNavigate } from "react-router-dom";
+// import Form from "./Form";
 
 const Card = () => {
-  const [showPopup, setShowPopup] = useState(false);
+  // const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <section className="w-full h-fit my-10 px-4 md:px-10 lg:px-28">
@@ -37,7 +39,8 @@ const Card = () => {
             gives you an extraordinary result.
           </p>
           <Btn
-            onClick={() => setShowPopup(true)}
+            // onClick={() => setShowPopup(true)}
+            onClick={() => navigate(`/payment/${encodeURIComponent("Digital Marketing")}`)}
             label="Buy Now"
             bgColor="bg-gray-100"
             textColor="text-black"
@@ -57,7 +60,8 @@ const Card = () => {
             If you appear first in search engines then you grow & succeed first!
           </p>
           <Btn
-            onClick={() => setShowPopup(true)}
+            // onClick={() => setShowPopup(true)}
+            onClick={() => navigate(`/payment/${encodeURIComponent("Search Engine Optimization")}`)}
             label="Buy Now"
             bgColor="bg-gray-100"
             textColor="text-black"
@@ -78,7 +82,8 @@ const Card = () => {
             more customers.
           </p>
           <Btn
-            onClick={() => setShowPopup(true)}
+            // onClick={() => setShowPopup(true)}
+            onClick={() => navigate(`/payment/${encodeURIComponent("Web Development")}`)}
             label="Buy Now"
             bgColor="bg-gray-100"
             textColor="text-black"
@@ -103,7 +108,8 @@ const Card = () => {
             desired audience with desired results.
           </p>
           <Btn
-            onClick={() => setShowPopup(true)}
+            // onClick={() => setShowPopup(true)}
+            onClick={() => navigate(`/payment/${encodeURIComponent("Social Media Marketing")}`)}
             label="Buy Now"
             bgColor="bg-gray-100"
             textColor="text-black"
@@ -111,7 +117,7 @@ const Card = () => {
         </div>
       </div>
 
-      {showPopup && <Form onClose={() => setShowPopup(false)} />}
+      {/* {showPopup && <Form onClose={() => setShowPopup(false)} />} */}
     </section>
   );
 };

@@ -14,6 +14,7 @@ import Contact from "./components/ContactUs";
 // import Blogs from "./components/Blogs"
 import ContactUs from "./components/ContactUs";
 import ScrollToTop from "./components/ScrollToTop";
+import PaymentPage from "./components/PaymentPage";
 function App() {
   return (
     <>
@@ -34,6 +35,7 @@ function App() {
           {/* <Route path="/career" element={<Career />} />
           <Route path="/blogs" element={<Blogs/>} /> */}
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/payment/:service" element={<PaymentPage />} />
         </Routes>
       </Router>
     </>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import tt from "../assets/tt.png";
 import bg from "../assets/header-bg5.webp";
-import Form from "./Form";
+// import Form from "./Form";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -117,7 +117,7 @@ function Navbar() {
           </Link>
         </div>
       )}
-      {showPopup && <Form onClose={() => setShowPopup(false)} />}
+      {/* {showPopup && <Form onClose={() => setShowPopup(false)} />} */}
     </nav>
   );
 }
