@@ -6,7 +6,7 @@ import cors from "cors";
 dotenv.config();
 const app = express();
 app.use(cors({
-  origin: 'https://technotech.in'
+  origin: 'https://tapnotech.in/'
 }));
 app.use(express.json());
 
