@@ -13,7 +13,7 @@ const PaymentPage = () => {
     const [formData, setFormData] = useState({
         amount: "",
         name: "",
-        email: "",
+        // email: "",
         phone: "",
     });
     const [loading, setLoading] = useState(false);
@@ -26,7 +26,7 @@ const PaymentPage = () => {
 
     const handlePayment = async () => {
         setError("");
-        if (!formData.amount || !formData.name || !formData.email) {
+        if (!formData.amount || !formData.name) {
             setError("Please fill all required fields: Amount, Name, and Email.");
             return;
         }
@@ -45,7 +45,7 @@ const PaymentPage = () => {
                     order_id: "order_" + Date.now(),
                     amount: parseFloat(formData.amount),
                     name: formData.name,
-                    email: formData.email,
+                    // email: formData.email,
                     phone: formData.phone || "N/A", // Optional, default to N/A if empty
                 }),
             });
@@ -116,7 +116,7 @@ const PaymentPage = () => {
                             required
                         />
                     </div>
-                    <div>
+                    {/* <div>
                         <label className="block text-sm font-medium mb-1">
                             Email Address *
                         </label>
@@ -129,7 +129,7 @@ const PaymentPage = () => {
                             className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required
                         />
-                    </div>
+                    </div> */}
                     <div>
                         <label className="block text-sm font-medium mb-1">
                             Phone Number

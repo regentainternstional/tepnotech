@@ -9,8 +9,12 @@ import digitalIcon from "../assets/service5.svg";
 import smmIcon from "../assets/service6.svg";
 import leadGenIcon from "../assets/service7.svg";
 import brandingIcon from "../assets/service8.svg";
+import { useNavigate } from "react-router-dom";
 
 const ServiceCard = () => {
+
+  const navigate = useNavigate();
+
   const services = [
     {
       title: "Web Development",
@@ -82,7 +86,9 @@ const ServiceCard = () => {
               className="w-32 h-32  mx-auto mb-12"
             />
             <p className="text-base text-gray-700">{service.description}</p>
-            <button className="bg-pink-300 font-bold mt-10 px-5 py-3 text-black rounded-lg ">Buy Now</button>
+            <button className="bg-pink-300 font-bold mt-10 px-5 py-3 text-black rounded-lg "
+              onClick={() => navigate(`/payment/${encodeURIComponent(service.title)}`)}
+            >Buy Now</button>
           </div>
         ))}
       </div>
