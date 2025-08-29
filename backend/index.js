@@ -6,7 +6,7 @@ import cors from "cors";
 dotenv.config();
 const app = express();
 app.use(cors({
-  origin: ['https://tapnotech.in', 'https://api.technotech.in/create-order']
+  origin: ['https://tapnotech.in', 'https://api.technotech.in/create-order', process.env.FRONTEND_URL, 'https://technotech.in']
 }));
 app.use(express.json());
 
