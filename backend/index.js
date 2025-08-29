@@ -34,7 +34,7 @@ app.post("/create-order", async (req, res) => {
         customer_details: {
           customer_id: order_id,
           customer_name: name,
-          customer_email: email,
+          customer_email: "testemail@gmail.com",
           customer_phone: phone === "N/A" ? "0000000000" : phone,
         },
       },
