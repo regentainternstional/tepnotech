@@ -5,7 +5,9 @@ import cors from "cors";
 
 dotenv.config();
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://technotech.in'
+}));
 app.use(express.json());
 
 app.post("/create-order", async (req, res) => {
