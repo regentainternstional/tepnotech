@@ -163,17 +163,19 @@ const PaymentPage = () => {
         amount: "",
         name: "",
         phone: "",
+        email:"",
     });
     const [errors, setErrors] = useState({
         amount: "",
         name: "",
         phone: "",
+        email:"",
     });
     const [loading, setLoading] = useState(false);
     const [generalError, setGeneralError] = useState("");
 
     const validateForm = () => {
-        const newErrors = { amount: "", name: "", phone: "" };
+        const newErrors = { amount: "", name: "", phone: "",  email:"" };
         let isValid = true;
 
         // Validate Amount (required, positive number)
@@ -194,9 +196,23 @@ const PaymentPage = () => {
             isValid = false;
         }
 
-        // Validate Phone (optional, but if provided, must be 10 digits)
-        if (formData.phone && !/^\d{10}$/.test(formData.phone)) {
+        // ✅ Validate Phone (required, must be 10 digits)
+        if (!formData.phone) {
+            newErrors.phone = "Phone number is required.";
+            isValid = false;
+        } else if (!/^\d{10}$/.test(formData.phone)) {
             newErrors.phone = "Phone number must be exactly 10 digits.";
+            isValid = false;
+        }
+
+
+            // ✅ Validate Email (required + proper format)
+        if (!formData.email) {
+            newErrors.email = "Email is required.";
+            isValid = false;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            // Basic email format validation
+            newErrors.email = "Please enter a valid email address.";
             isValid = false;
         }
 
@@ -227,6 +243,7 @@ const PaymentPage = () => {
                     amount: parseFloat(formData.amount),
                     name: formData.name,
                     phone: formData.phone || "N/A",
+                    email: formData.email || "N/A",
                 }),
             });
 
@@ -318,7 +335,7 @@ const PaymentPage = () => {
                     </div>
                     <div>
                         <label htmlFor="phone" className="block text-sm font-medium mb-1">
-                            Phone Number
+                            Phone Number *
                         </label>
                         <input
                             type="text"
@@ -334,6 +351,28 @@ const PaymentPage = () => {
                         {errors.phone && (
                             <p id="phone-error" className="text-red-500 text-sm mt-1">
                                 {errors.phone}
+                            </p>
+                        )}
+                    </div>
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium mb-1">
+                            Email *
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="Enter your email address"
+                            className={`w-full border ${errors.email ? "border-red-500" : "border-gray-300"} rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                            required
+                            aria-invalid={!!errors.email}
+                            aria-describedby={errors.email ? "email-error" : undefined}
+                        />
+                        {errors.email && (
+                            <p id="email-error" className="text-red-500 text-sm mt-1">
+                                {errors.email}
                             </p>
                         )}
                     </div>
