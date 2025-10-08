@@ -5,14 +5,13 @@ import devIcon from "../assets/service1.svg";
 import ppcIcon from "../assets/service2.svg";
 import hostingIcon from "../assets/service3.svg";
 import seoIcon from "../assets/service4.svg";
-import digitalIcon from "../assets/service5.svg";
-import smmIcon from "../assets/service6.svg";
-import leadGenIcon from "../assets/service7.svg";
-import brandingIcon from "../assets/service8.svg";
+// import digitalIcon from "../assets/service5.svg";
+// import smmIcon from "../assets/service6.svg";
+// import leadGenIcon from "../assets/service7.svg";
+// import brandingIcon from "../assets/service8.svg";
 import { useNavigate } from "react-router-dom";
 
 const ServiceCard = () => {
-
   const navigate = useNavigate();
 
   const services = [
@@ -40,30 +39,30 @@ const ServiceCard = () => {
       description:
         "With years of experience in online marketing, we delivers powerful SEO and digital strategies that help businesses expand their visibility and connect with a global audience.",
     },
-    {
-      title: "Digital Marketing",
-      image: digitalIcon,
-      description:
-        "We craft targeted digital marketing strategies that increase your online visibility, drive quality traffic, and maximize ROI.",
-    },
-    {
-      title: "Social Media Marketing",
-      image: smmIcon,
-      description:
-        "we offers expert Social Media Marketing services to optimize your pages, engage your target audience, drive traffic, generate leads, and boost brand awareness.",
-    },
-    {
-      title: "Lead Generation",
-      image: leadGenIcon,
-      description:
-        "we offers expert Social Media Marketing services to optimize your pages, engage your target audience, drive traffic, generate leads, and boost brand awareness.",
-    },
-    {
-      title: "Business Branding",
-      image: brandingIcon,
-      description:
-        "We specialize in creating unique brand identities that capture your vision, build emotional connections, and set you apart from the competition.",
-    },
+    // {
+    //   title: "Digital Marketing",
+    //   image: digitalIcon,
+    //   description:
+    //     "We craft targeted digital marketing strategies that increase your online visibility, drive quality traffic, and maximize ROI.",
+    // },
+    // {
+    //   title: "Social Media Marketing",
+    //   image: smmIcon,
+    //   description:
+    //     "we offers expert Social Media Marketing services to optimize your pages, engage your target audience, drive traffic, generate leads, and boost brand awareness.",
+    // },
+    // {
+    //   title: "Lead Generation",
+    //   image: leadGenIcon,
+    //   description:
+    //     "we offers expert Social Media Marketing services to optimize your pages, engage your target audience, drive traffic, generate leads, and boost brand awareness.",
+    // },
+    // {
+    //   title: "Business Branding",
+    //   image: brandingIcon,
+    //   description:
+    //     "We specialize in creating unique brand identities that capture your vision, build emotional connections, and set you apart from the competition.",
+    // },
   ];
 
   return (
@@ -86,9 +85,14 @@ const ServiceCard = () => {
               className="w-32 h-32  mx-auto mb-12"
             />
             <p className="text-base text-gray-700">{service.description}</p>
-            <button className="bg-pink-300 font-bold mt-10 px-5 py-3 text-black rounded-lg "
-              onClick={() => navigate(`/payment/${encodeURIComponent(service.title)}`)}
-            >Buy Now</button>
+            <button
+              className="bg-pink-300 font-bold mt-10 px-5 py-3 text-black rounded-lg "
+              onClick={() =>
+                navigate(`/payment/${encodeURIComponent(service.title)}`)
+              }
+            >
+              Buy Now
+            </button>
           </div>
         ))}
       </div>

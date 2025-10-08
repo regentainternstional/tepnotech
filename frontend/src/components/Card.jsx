@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import img1 from "../assets/img1.webp";
 import img2 from "../assets/img2.webp";
 import img3 from "../assets/img3.webp";
@@ -23,24 +23,22 @@ const Card = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-yellow-100 px-6 py-8 rounded-md transition-all duration-300 hover:-translate-y-2">
           <span className="text-2xl md:text-3xl font-semibold">01</span>
-          <img
-            src={img1}
-            alt="Digital Marketing"
-            className="w-full h-auto mt-4"
-          />
+          <img src={img1} alt="Web Designing" className="w-full h-auto mt-4" />
           <a
             href="#"
             className="text-black text-xl md:text-2xl font-bold block mt-4"
           >
-            Digital Marketing
+            Web Designing
           </a>
           <p className="text-sm md:text-base text-gray-700 mt-4">
-            Grow your business, brand or website with Digital Marketing, that
-            gives you an extraordinary result.
+            Create stunning, user-friendly websites that enhance your brand
+            identity and deliver seamless digital experiences.
           </p>
           <Btn
             // onClick={() => setShowPopup(true)}
-            onClick={() => navigate(`/payment/${encodeURIComponent("Digital Marketing")}`)}
+            onClick={() =>
+              navigate(`/payment/${encodeURIComponent("Web Designing")}`)
+            }
             label="Buy Now"
             bgColor="bg-gray-100"
             textColor="text-black"
@@ -61,7 +59,11 @@ const Card = () => {
           </p>
           <Btn
             // onClick={() => setShowPopup(true)}
-            onClick={() => navigate(`/payment/${encodeURIComponent("Search Engine Optimization")}`)}
+            onClick={() =>
+              navigate(
+                `/payment/${encodeURIComponent("Search Engine Optimization")}`
+              )
+            }
             label="Buy Now"
             bgColor="bg-gray-100"
             textColor="text-black"
@@ -83,7 +85,9 @@ const Card = () => {
           </p>
           <Btn
             // onClick={() => setShowPopup(true)}
-            onClick={() => navigate(`/payment/${encodeURIComponent("Web Development")}`)}
+            onClick={() =>
+              navigate(`/payment/${encodeURIComponent("Web Development")}`)
+            }
             label="Buy Now"
             bgColor="bg-gray-100"
             textColor="text-black"
@@ -94,22 +98,25 @@ const Card = () => {
           <span className="text-2xl md:text-3xl font-semibold">04</span>
           <img
             src={img4}
-            alt="Social Media"
+            alt="Graphic Designing"
             className="w-full h-auto mt-4 rounded-t-full"
           />
           <a
             href="#"
             className="text-black text-xl md:text-2xl font-bold block mt-4 text-center"
           >
-            Social Media Marketing
+            Graphic Designing
           </a>
           <p className="text-sm md:text-base text-gray-700 mt-4">
-            Social Media Marketing is one of the best platforms to target your
-            desired audience with desired results.
+            Transform ideas into stunning visuals with Graphic Designing —
+            crafting logos, posters, and creatives that make your brand stand
+            out.
           </p>
           <Btn
             // onClick={() => setShowPopup(true)}
-            onClick={() => navigate(`/payment/${encodeURIComponent("Social Media Marketing")}`)}
+            onClick={() =>
+              navigate(`/payment/${encodeURIComponent("Graphic Designing")}`)
+            }
             label="Buy Now"
             bgColor="bg-gray-100"
             textColor="text-black"

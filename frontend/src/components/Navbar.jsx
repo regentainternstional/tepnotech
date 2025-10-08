@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import tt from "../assets/tt.png";
 import bg from "../assets/header-bg5.webp";
 // import Form from "./Form";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-
+  const navigate = useNavigate();
   const toggleMenu = () => setIsOpen(!isOpen);
+  // eslint-disable-next-line no-unused-vars
   const [showPopup, setShowPopup] = useState(false);
 
   return (
@@ -54,17 +55,18 @@ function Navbar() {
             <Link to="/marketing">Best Digital Marketing Company</Link>
           </li> */}
           <div>
-            <Link to="#">
-              <button
-                className="relative overflow-hidden group bg-[#ADFF1C] text-black px-6 py-3 rounded font-bold transition-all duration-300 hover:-translate-y-1 mx-20"
-                onClick={() => setShowPopup(true)}  
-              >
-                <span className="relative z-10 transition-colors duration-300 group-hover:text-black">
-                  Get Started <i className="bx bx-right-arrow-alt text-2xl"></i>
-                </span>
-                <span className="absolute inset-0 bg-white scale-x-0 origin-center transition-transform duration-300 ease-in-out group-hover:scale-x-100 z-0 rounded"></span>
-              </button>
-            </Link>
+            <button
+              className="relative overflow-hidden group bg-[#ADFF1C] text-black px-6 py-3 rounded font-bold transition-all duration-300 hover:-translate-y-1 mx-20"
+              onClick={() => {
+                setShowPopup(true);
+                navigate(`/payment/${encodeURIComponent("get started")}`);
+              }}
+            >
+              <span className="relative z-10 transition-colors duration-300 group-hover:text-black">
+                Get Started <i className="bx bx-right-arrow-alt text-2xl"></i>
+              </span>
+              <span className="absolute inset-0 bg-white scale-x-0 origin-center transition-transform duration-300 ease-in-out group-hover:scale-x-100 z-0 rounded"></span>
+            </button>
           </div>
         </ul>
       </div>
@@ -107,14 +109,17 @@ function Navbar() {
           >
             Best Digital Marketing Company
           </Link> */}
-          <Link to="#" onClick={toggleMenu}>
-            <button
-              className="bg-[#ADFF1C] text-black px-4 py-2 rounded-xl font-semibold"
-              onClick={() => setShowPopup(true)}
-            >
-              Get Started
-            </button>
-          </Link>
+
+          <button
+            className="bg-[#ADFF1C] text-black px-4 py-2 rounded-xl font-semibold"
+            onClick={() => {
+              setShowPopup(true);
+              toggleMenu();
+              navigate(`/payment/${encodeURIComponent("get started")}`);
+            }}
+          >
+            Get Started
+          </button>
         </div>
       )}
       {/* {showPopup && <Form onClose={() => setShowPopup(false)} />} */}
