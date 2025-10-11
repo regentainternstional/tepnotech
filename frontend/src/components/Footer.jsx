@@ -55,12 +55,30 @@ const Footer = ({ sarcColor = "text-lime-400" }) => {
         <div>
           <h3 className="text-2xl font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2 text-base text-gray-600">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About Us</Link></li>
-            <li><Link to="/services">Our Services</Link></li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About Us</Link>
+            </li>
+            <li>
+              <Link to="/services">Our Services</Link>
+            </li>
             {/* <li><Link to="/career">Career</Link></li>
             <li><Link to="/blogs">Our Blogs</Link></li> */}
-            <li><Link to="/contact">Contact Us</Link></li>
+            <li>
+              <Link to="/contact">Contact Us</Link>
+            </li>
+            <li>
+              <a href="/term.pdf" target="_blank" rel="noopener noreferrer">
+                Terms & Conditions
+              </a>
+            </li>{" "}
+            <li>
+              <a href="/refund.pdf" target="_blank" rel="noopener noreferrer">
+                Refund Policy
+              </a>
+            </li>{" "}
           </ul>
         </div>
 
@@ -70,11 +88,7 @@ const Footer = ({ sarcColor = "text-lime-400" }) => {
           <ul className="space-y-3 text-base text-gray-600">
             <li className="flex items-start gap-3">
               <FaMapMarkerAlt className="mt-1 text-xl" />
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="#" target="_blank" rel="noopener noreferrer">
                 Delhi,India
               </a>
             </li>
@@ -92,8 +106,7 @@ const Footer = ({ sarcColor = "text-lime-400" }) => {
 
       {/* Bottom Copyright */}
       <div className="border-t mt-10 pt-4 text-center text-base text-gray-500">
-        © Copyright 2012 - 2025. All rights reserved{" "}
-        <strong>TEPNO TECH</strong>
+        © Copyright 2012 - 2025. All rights reserved <strong>TEPNO TECH</strong>
       </div>
     </footer>
   );
