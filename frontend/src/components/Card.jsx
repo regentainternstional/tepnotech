@@ -17,7 +17,7 @@ const Card = () => {
         <span className="text-black">Best</span> Digital Marketing{" "}
         <span className="text-black">Company</span> in Delhi –{" "}
         <br className="hidden md:block" />
-        TEPNO TECH
+        TEPNO TECH SERVICES PVT. LTD.
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

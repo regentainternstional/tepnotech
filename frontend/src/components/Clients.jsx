@@ -83,7 +83,7 @@ const Clients = () => {
                   ))}
                 </ul>
                 <p className="text-gray-300 mt-4 text-base font-semibold">
-                  The answer is clear: TEPNO TECH .
+                  The answer is clear: TEPNO TECH SERVICES PVT. LTD.
                 </p>
               </div>
 
@@ -112,12 +112,12 @@ const Clients = () => {
               {/* Text Content */}
               <div className="flex-1">
                 <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 leading-tight">
-                  Why TEPNO TECH Is the Best Choice for Digital Marketing
+                  Why TEPNO TECH SERVICES PVT. LTD. Is the Best Choice for Digital Marketing
                   and Web Development
                 </h2>
                 <p className="text-gray-300 mb-4 text-sm sm:text-base">
                   Business owners prefer working with experienced companies that
-                  deliver proven results.TEPNO TECH stands out with its
+                  deliver proven results.TEPNO TECH SERVICES PVT. LTD. stands out with its
                   extensive experience in:
                 </p>
                 <ul className="space-y-3 space-x-2">
@@ -332,7 +332,7 @@ const Clients = () => {
               <div className="flex-1">
                 <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
                   Why Choose{" "}
-                  <span className="text-teal-800">TEPNO TECH</span>
+                  <span className="text-teal-800">TEPNO TECH SERVICES PVT. LTD.</span>
                 </h2>
                 <ScrollAnimate animation="slidetop">
                   <p className="text-gray-600 mb-4 [animation-delay:0.4s]">
@@ -367,7 +367,7 @@ const Clients = () => {
             <ScrollAnimate animation="slidetop">
               <p className="text-base font-normal text-center mt-10  [animation-delay:0.4s]">
                 Looking for reliable digital marketing and SEO services in
-                Delhi? Trust TEPNO to deliver
+                Delhi? Trust TEPNO TECH SERVICES PVT. LTD. to deliver
                 growth-driven strategies <br />
                 tailoredto your business goals. <br /> Contact us today for
                 professional website development, SEO, and digital marketing
@@ -405,7 +405,7 @@ const Clients = () => {
             <div className="w-full text-center md:text-left">
               <ScrollAnimate animation="slideright">
                 <p className="text-gray-700 mt-6  [animation-delay:1s]">
-                  At TEPNO TECH, we believe that no business can succeed
+                  At TEPNO TECH SERVICES PVT. LTD., we believe that no business can succeed
                   today without a solid digital presence. With our expert SEO
                   services in Delhi, and across India, we
                   ensure your business stands out in search engine results and

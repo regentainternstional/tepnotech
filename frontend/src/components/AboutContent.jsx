@@ -67,7 +67,7 @@ const AboutContent = () => {
               Your Success is Our <br className="hidden sm:block" /> Achievement
             </h2>
             <p className="text-gray-700 mb-4 leading-relaxed">
-              At TEPNO TECH, a trusted digital marketing agency in Delhi, we
+              At TEPNO TECH SERVICES PVT. LTD., a trusted digital marketing agency in Delhi, we
               believe that true partnership goes beyond contracts. We work as an
               extension of your team—raising red flags when necessary, offering
               expert guidance, and maintaining a transparent, collaborative
@@ -115,7 +115,7 @@ const AboutContent = () => {
                 As a best Website Development Company in Delhi, we craft
                 stunning, responsive, and SEO-friendly websites designed to your
                 business needs. Whether you're a growing startup or a
-                well-established enterprise, TEPNO TECH delivers secure,
+                well-established enterprise, TEPNO TECH SERVICES PVT. LTD. delivers secure,
                 scalable, and performance-optimized platforms that help you
                 stand out online.
               </p>
@@ -153,7 +153,7 @@ const AboutContent = () => {
               Technology-Driven, Business-Focused
             </h2>
             <p className="text-gray-700 leading-relaxed mb-6">
-              At TEPNO TECH, a trusted digital marketing company in Delhi, we
+              At TEPNO TECH SERVICES PVT. LTD., a trusted digital marketing company in Delhi, we
               leverage the latest frameworks, tools, and rapid prototyping
               methodologies to deliver scalable and cost-effective digital
               solutions. Our focus is to empower businesses through simplified

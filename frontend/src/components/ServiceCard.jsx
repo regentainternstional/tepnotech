@@ -19,13 +19,13 @@ const ServiceCard = () => {
       title: "Web Development",
       image: devIcon,
       description:
-        "At TEPNO TECH, our expert web development team creates modern, responsive, and user-friendly websites designed to engage visitors and convert them into customers. Our latest and unique mobile-friendly web designs ensure a seamless experience across all devices, helping your business grow online.",
+        "At TEPNO TECH SERVICES PVT. LTD., our expert web development team creates modern, responsive, and user-friendly websites designed to engage visitors and convert them into customers. Our latest and unique mobile-friendly web designs ensure a seamless experience across all devices, helping your business grow online.",
     },
     {
       title: "Pay-Per-Click (PPC) Advertising",
       image: ppcIcon,
       description:
-        "Search engine PPC Ads are one of the most effective digital marketing strategies to instantly drive targeted traffic, generate quality leads, and boost sales. At TEPNO TECH, our expert PPC campaign management ensures your ads reach the right audience at the right time for maximum ROI.",
+        "Search engine PPC Ads are one of the most effective digital marketing strategies to instantly drive targeted traffic, generate quality leads, and boost sales. At TEPNO TECH SERVICES PVT. LTD., our expert PPC campaign management ensures your ads reach the right audience at the right time for maximum ROI.",
     },
     {
       title: "Web Hosting",

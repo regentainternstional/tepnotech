@@ -11,7 +11,7 @@ const testimonials = [
   },
   {
     name: "Manoj Mishra",
-    text: "We’ve tried many agencies, but TEPNO stands out as the top social media marketing company in Delhi. Our engagement and customer response improved within weeks.",
+    text: "We’ve tried many agencies, but TEPNO TECH SERVICES PVT. LTD. stands out as the top social media marketing company in Delhi. Our engagement and customer response improved within weeks.",
     rating: 5,
   },
   {

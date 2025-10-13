@@ -12,7 +12,7 @@ const ContactSection = () => {
       <div>
         <h3 className="text-purple-600 font-semibold mb-2">Contact Us</h3>
         <h2 className="text-3xl font-bold mb-8">
-          Get in Touch with TEPNO TECH
+          Get in Touch with TEPNO TECH SERVICES PVT. LTD.
         </h2>
 
         <div className="space-y-8">
