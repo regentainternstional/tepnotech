@@ -34,6 +34,7 @@ const Card = () => {
             Create stunning, user-friendly websites that enhance your brand
             identity and deliver seamless digital experiences.
           </p>
+          <p className="text-gray-700 ">Basis Price: 1000 Rs</p>
           <Btn
             // onClick={() => setShowPopup(true)}
             onClick={() =>
@@ -57,6 +58,7 @@ const Card = () => {
           <p className="text-sm md:text-base text-gray-700 mt-4">
             If you appear first in search engines then you grow & succeed first!
           </p>
+          <p className="text-gray-700 ">Basis Price: 1500 Rs</p>
           <Btn
             // onClick={() => setShowPopup(true)}
             onClick={() =>
@@ -83,6 +85,7 @@ const Card = () => {
             Our unique and responsive web design enables your website to attract
             more customers.
           </p>
+          <p className="text-gray-700 ">Basis Price: 2000 Rs</p>
           <Btn
             // onClick={() => setShowPopup(true)}
             onClick={() =>
@@ -112,6 +115,7 @@ const Card = () => {
             crafting logos, posters, and creatives that make your brand stand
             out.
           </p>
+          <p className="text-gray-700 ">Basis Price: 1000 Rs</p>
           <Btn
             // onClick={() => setShowPopup(true)}
             onClick={() =>

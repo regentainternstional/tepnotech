@@ -16,28 +16,32 @@ const ServiceCard = () => {
 
   const services = [
     {
-      title: "Web Development",
+      title: "Web Designing",
       image: devIcon,
       description:
-        "At TEPNO TECH SERVICES PVT. LTD., our expert web development team creates modern, responsive, and user-friendly websites designed to engage visitors and convert them into customers. Our latest and unique mobile-friendly web designs ensure a seamless experience across all devices, helping your business grow online.",
+        "Create stunning, user-friendly websites that enhance your brand identity and deliver seamless digital experiences.",
+      basicPrice: "2000",
     },
     {
-      title: "Pay-Per-Click (PPC) Advertising",
+      title: "Search Engine Optimization",
       image: ppcIcon,
       description:
-        "Search engine PPC Ads are one of the most effective digital marketing strategies to instantly drive targeted traffic, generate quality leads, and boost sales. At TEPNO TECH SERVICES PVT. LTD., our expert PPC campaign management ensures your ads reach the right audience at the right time for maximum ROI.",
+        "If you appear first in search engines then you grow & succeed first!",
+      basicPrice: "1000",
     },
     {
-      title: "Web Hosting",
+      title: "Web Development",
       image: hostingIcon,
       description:
-        "we offers a complete range of web hosting services, including Shared Hosting, VPS Hosting, and Dedicated Servers—ensuring reliable performance and 24/7 support for your website.",
+        "Our unique and responsive web design enables your website to attract more customers.",
+      basicPrice: "1500",
     },
     {
-      title: "Search Engine Optimization (SEO)",
+      title: "Graphic Designing",
       image: seoIcon,
       description:
-        "With years of experience in online marketing, we delivers powerful SEO and digital strategies that help businesses expand their visibility and connect with a global audience.",
+        "Transform ideas into stunning visuals with Graphic Designing — crafting logos, posters, and creatives that make your brand stand out.",
+      basicPrice: "1000",
     },
     // {
     //   title: "Digital Marketing",
@@ -85,6 +89,9 @@ const ServiceCard = () => {
               className="w-32 h-32  mx-auto mb-12"
             />
             <p className="text-base text-gray-700">{service.description}</p>
+            <p className="text-gray-700 text-start">
+              Basic Price: {service.basicPrice}
+            </p>
             <button
               className="bg-pink-300 font-bold mt-10 px-5 py-3 text-black rounded-lg "
               onClick={() =>
