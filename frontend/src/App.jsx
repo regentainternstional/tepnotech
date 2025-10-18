@@ -15,6 +15,11 @@ import Contact from "./components/ContactUs";
 import ContactUs from "./components/ContactUs";
 import ScrollToTop from "./components/ScrollToTop";
 import PaymentPage from "./components/PaymentPage";
+import AdminLogin from "./components/AdminLogin";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AdminLayout from "./components/AdminLayout";
+import AdminDashboard from "./components/AdminDashboard";
+import AdminPayments from "./components/AdminPayments";
 function App() {
   return (
     <>
@@ -36,6 +41,27 @@ function App() {
           <Route path="/blogs" element={<Blogs/>} /> */}
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/payment/:service" element={<PaymentPage />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute>
+                <AdminLayout>
+                  <AdminDashboard />
+                </AdminLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/payments"
+            element={
+              <ProtectedRoute>
+                <AdminLayout>
+                  <AdminPayments />
+                </AdminLayout>
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Router>
     </>
