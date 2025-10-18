@@ -249,6 +249,8 @@
 // export default PaymentPage;
 
 
+"use client"
+
 import { useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { load } from "@cashfreepayments/cashfree-js"
@@ -264,6 +266,8 @@ const PaymentPage = () => {
     phone: "",
     email: "",
   })
+  const [autofillCode, setAutofillCode] = useState("")
+  const [autofillDataId, setAutofillDataId] = useState(null)
   const [errors, setErrors] = useState({
     amount: "",
     name: "",
@@ -319,6 +323,39 @@ const PaymentPage = () => {
     setErrors((prev) => ({ ...prev, [name]: "" }))
   }
 
+  const handleAutofillCode = async () => {
+    if (!autofillCode.trim()) {
+      alert("Please enter an autofill code")
+      return
+    }
+
+    try {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_API}/verify-autofill-code`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: autofillCode }),
+      })
+
+      const data = await res.json()
+
+      if (data.success) {
+        setFormData({
+          amount: data.data.amount.toString(),
+          name: data.data.name,
+          phone: data.data.phone,
+          email: data.data.email,
+        })
+        setAutofillDataId(data.data.id)
+        alert("Form auto-filled successfully!")
+      } else {
+        alert(data.message || "Invalid code or no data available")
+      }
+    } catch (error) {
+      console.error("Error verifying code:", error)
+      alert("Failed to verify code")
+    }
+  }
+
   const loadRazorpayScript = () => {
     return new Promise((resolve) => {
       const script = document.createElement("script")
@@ -360,6 +397,13 @@ const PaymentPage = () => {
           const verifyData = await verifyRes.json()
 
           if (verifyData.success) {
+            if (autofillDataId) {
+              await fetch(`${import.meta.env.VITE_BACKEND_API}/mark-data-processed`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ dataId: autofillDataId }),
+              })
+            }
             alert("Payment successful!")
             navigate("/")
           } else {
@@ -386,10 +430,21 @@ const PaymentPage = () => {
 
   const handleCashfreePayment = async (payment_session_id) => {
     const cashfree = await load({ mode: "production" })
+
     await cashfree.checkout({
       paymentSessionId: payment_session_id,
       redirectTarget: "_self",
     })
+
+    // Note: For Cashfree, you'll need to handle the success callback on your return URL
+    // and mark the data as processed there
+    if (autofillDataId) {
+      await fetch(`${import.meta.env.VITE_BACKEND_API}/mark-data-processed`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ dataId: autofillDataId }),
+      })
+    }
   }
 
   const handlePayment = async () => {
@@ -480,6 +535,28 @@ const PaymentPage = () => {
             {generalError}
           </div>
         )}
+
+        <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <label htmlFor="autofillCode" className="block text-sm font-medium mb-2 text-gray-700">
+            Have an Auto-Fill Code?
+          </label>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              id="autofillCode"
+              value={autofillCode}
+              onChange={(e) => setAutofillCode(e.target.value)}
+              placeholder="Enter code"
+              className="flex-1 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              onClick={handleAutofillCode}
+              className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+            >
+              Apply
+            </button>
+          </div>
+        </div>
 
         <div className="space-y-4">
           <div>

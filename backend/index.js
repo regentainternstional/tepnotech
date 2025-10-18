@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import Razorpay from "razorpay";
+import multer from "multer";
+import { parse } from "csv-parse/sync";
 
 dotenv.config();
 const app = express();
@@ -23,6 +25,18 @@ app.use(
 );
 
 app.use(express.json());
+
+const storage = multer.memoryStorage();
+const upload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype === "text/csv" || file.originalname.endsWith(".csv")) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only CSV files are allowed"));
+    }
+  },
+});
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -45,6 +59,18 @@ const paymentSchema = new mongoose.Schema({
 });
 
 const Payment = mongoose.model("Payment", paymentSchema);
+
+const uploadedDataSchema = new mongoose.Schema({
+  amount: { type: Number, required: true },
+  fullname: { type: String, required: true },
+  phone: { type: String, required: true },
+  email: { type: String, required: true },
+  processed: { type: Boolean, default: false },
+  createdAt: { type: Date, default: Date.now },
+  processedAt: { type: Date },
+});
+
+const UploadedData = mongoose.model("UploadedData", uploadedDataSchema);
 
 const gatewayCounterSchema = new mongoose.Schema({
   counter: { type: Number, default: 0 },
@@ -121,7 +147,7 @@ app.post("/create-order", async (req, res) => {
       status: "initiated",
     });
 
-    res.json(response.data)
+    res.json(response.data);
   } catch (err) {
     console.error(err.response?.data || err.message);
     res.status(500).json({ error: "Failed to create order" });
@@ -129,7 +155,7 @@ app.post("/create-order", async (req, res) => {
 });
 
 app.post("/create-razorpay-order", async (req, res) => {
-  const { order_id, amount, name, phone, email } = req.body
+  const { order_id, amount, name, phone, email } = req.body;
 
   try {
     const options = {
@@ -141,9 +167,9 @@ app.post("/create-razorpay-order", async (req, res) => {
         customer_email: email,
         customer_phone: phone,
       },
-    }
+    };
 
-    const razorpayOrder = await razorpay.orders.create(options)
+    const razorpayOrder = await razorpay.orders.create(options);
 
     await Payment.create({
       orderId: order_id,
@@ -154,53 +180,234 @@ app.post("/create-razorpay-order", async (req, res) => {
       customerPhone: phone,
       razorpayOrderId: razorpayOrder.id,
       status: "initiated",
-    })
+    });
 
     res.json({
       razorpay_order_id: razorpayOrder.id,
       amount: razorpayOrder.amount,
       currency: razorpayOrder.currency,
       key_id: process.env.RAZORPAY_KEY_ID,
-    })
+    });
   } catch (err) {
-    console.error("Razorpay Error:", err)
-    res.status(500).json({ error: "Failed to create Razorpay order" })
+    console.error("Razorpay Error:", err);
+    res.status(500).json({ error: "Failed to create Razorpay order" });
   }
 });
 
 app.post("/verify-razorpay-payment", async (req, res) => {
-  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body
+  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
+    req.body;
 
   try {
-    const crypto = await import("crypto")
-    const hmac = crypto.createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
-    hmac.update(razorpay_order_id + "|" + razorpay_payment_id)
-    const generated_signature = hmac.digest("hex")
+    const crypto = await import("crypto");
+    const hmac = crypto.createHmac("sha256", process.env.RAZORPAY_KEY_SECRET);
+    hmac.update(razorpay_order_id + "|" + razorpay_payment_id);
+    const generated_signature = hmac.digest("hex");
 
     if (generated_signature === razorpay_signature) {
       // Update payment status in database
       await Payment.findOneAndUpdate(
         { razorpayOrderId: razorpay_order_id },
-        { status: "success", updatedAt: Date.now() },
-      )
+        { status: "SUCCESS", updatedAt: Date.now() }
+      );
 
-      res.json({ success: true, message: "Payment verified successfully" })
+      res.json({ success: true, message: "Payment verified successfully" });
     } else {
-      res.status(400).json({ success: false, message: "Invalid signature" })
+      res.status(400).json({ success: false, message: "Invalid signature" });
     }
   } catch (err) {
-    console.error("Verification Error:", err)
-    res.status(500).json({ success: false, error: "Payment verification failed" })
+    console.error("Verification Error:", err);
+    res
+      .status(500)
+      .json({ success: false, error: "Payment verification failed" });
   }
 });
 
 app.get("/payments", async (req, res) => {
   try {
-    const payments = await Payment.find().sort({ createdAt: -1 })
-    res.json(payments)
+    const payments = await Payment.find().sort({ createdAt: -1 });
+    res.json(payments);
   } catch (err) {
-    console.error("Error fetching payments:", err)
-    res.status(500).json({ error: "Failed to fetch payments" })
+    console.error("Error fetching payments:", err);
+    res.status(500).json({ error: "Failed to fetch payments" });
+  }
+});
+
+app.post("/upload-payment-data", async (req, res) => {
+  const { amount, fullname, phone, email } = req.body;
+
+  try {
+    const uploadedData = await UploadedData.create({
+      amount,
+      fullname,
+      phone,
+      email,
+      processed: false,
+    });
+
+    res.json({ success: true, data: uploadedData });
+  } catch (err) {
+    console.error("Error uploading data:", err);
+    res.status(500).json({ error: "Failed to upload payment data" });
+  }
+});
+
+app.post("/upload-csv", upload.single("csvFile"), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    const csvData = req.file.buffer.toString("utf-8");
+    const records = parse(csvData, {
+      columns: true,
+      skip_empty_lines: true,
+      trim: true,
+    });
+
+    const validRecords = [];
+    const errors = [];
+
+    records.forEach((record, index) => {
+      const rowNumber = index + 2; // +2 because index starts at 0 and row 1 is header
+
+      // Validate each record
+      if (
+        !record.amount ||
+        isNaN(record.amount) ||
+        Number.parseFloat(record.amount) <= 0
+      ) {
+        errors.push(`Row ${rowNumber}: Invalid amount`);
+        return;
+      }
+
+      if (!record.fullname || !record.fullname.trim()) {
+        errors.push(`Row ${rowNumber}: Full name is required`);
+        return;
+      }
+
+      if (!record.phone || !/^\d{10}$/.test(record.phone.trim())) {
+        errors.push(
+          `Row ${rowNumber}: Invalid phone number (must be 10 digits)`
+        );
+        return;
+      }
+
+      if (
+        !record.email ||
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(record.email.trim())
+      ) {
+        errors.push(`Row ${rowNumber}: Invalid email`);
+        return;
+      }
+
+      validRecords.push({
+        amount: Number.parseFloat(record.amount),
+        fullname: record.fullname.trim(),
+        phone: record.phone.trim(),
+        email: record.email.trim(),
+        processed: false,
+      });
+    });
+
+    if (validRecords.length === 0) {
+      return res.status(400).json({
+        error: "No valid records found in CSV",
+        errors: errors,
+      });
+    }
+
+    // Insert all valid records
+    const insertedData = await UploadedData.insertMany(validRecords);
+
+    res.json({
+      success: true,
+      message: `Successfully uploaded ${insertedData.length} records`,
+      inserted: insertedData.length,
+      errors: errors.length > 0 ? errors : undefined,
+    });
+  } catch (err) {
+    console.error("Error uploading CSV:", err);
+    res.status(500).json({ error: "Failed to upload CSV file" });
+  }
+});
+
+app.get("/uploaded-data", async (req, res) => {
+  try {
+    const { filter } = req.query; // 'all', 'processed', 'unprocessed'
+
+    const query = {};
+    if (filter === "processed") {
+      query.processed = true;
+    } else if (filter === "unprocessed") {
+      query.processed = false;
+    }
+    const data = await UploadedData.find(query).sort({ createdAt: -1 });
+    res.json(data);
+  } catch (err) {
+    console.error("Error fetching uploaded data:", err);
+    res.status(500).json({ error: "Failed to fetch uploaded data" });
+  }
+});
+
+app.post("/verify-autofill-code", async (req, res) => {
+  const { code } = req.body;
+
+  try {
+    if (code !== process.env.AUTOFILL_CODE) {
+      return res.status(400).json({ success: false, message: "Invalid code" });
+    }
+
+    // Get the first unprocessed data
+    const unprocessedData = await UploadedData.findOne({
+      processed: false,
+    }).sort({ createdAt: 1 });
+
+    if (!unprocessedData) {
+      return res
+        .status(404)
+        .json({ success: false, message: "No unprocessed data available" });
+    }
+
+    res.json({
+      success: true,
+      data: {
+        id: unprocessedData._id,
+        amount: unprocessedData.amount,
+        name: unprocessedData.fullname,
+        phone: unprocessedData.phone,
+        email: unprocessedData.email,
+      },
+    });
+  } catch (err) {
+    console.error("Error verifying code:", err);
+    res.status(500).json({ error: "Failed to verify code" });
+  }
+});
+
+app.post("/mark-data-processed", async (req, res) => {
+  const { dataId } = req.body;
+
+  try {
+    await UploadedData.findByIdAndUpdate(dataId, {
+      processed: true,
+      processedAt: Date.now(),
+    });
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Error marking data as processed:", err);
+    res.status(500).json({ error: "Failed to mark data as processed" });
+  }
+});
+
+app.delete("/uploaded-data/:id", async (req, res) => {
+  try {
+    await UploadedData.findByIdAndDelete(req.params.id);
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Error deleting data:", err);
+    res.status(500).json({ error: "Failed to delete data" });
   }
 });
 

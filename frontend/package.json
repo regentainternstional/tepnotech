@@ -13,6 +13,7 @@
     "@cashfreepayments/cashfree-js": "^1.0.5",
     "@heroicons/react": "^2.2.0",
     "axios": "^1.11.0",
+    "lucide-react": "^0.546.0",
     "react": "^19.1.0",
     "react-circular-progressbar": "^2.2.0",
     "react-dom": "^19.1.0",

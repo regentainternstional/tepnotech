@@ -20,6 +20,9 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AdminLayout from "./components/AdminLayout";
 import AdminDashboard from "./components/AdminDashboard";
 import AdminPayments from "./components/AdminPayments";
+import AdminUploads from "./components/AdminUploads";
+import TermsAndConditions from "./components/TermsAndConditions";
+import RefundPolicy from "./components/RefundPolicy";
 function App() {
   return (
     <>
@@ -42,6 +45,8 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/payment/:service" element={<PaymentPage />} />
           <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route
             path="/admin/dashboard"
             element={
@@ -58,6 +63,16 @@ function App() {
               <ProtectedRoute>
                 <AdminLayout>
                   <AdminPayments />
+                </AdminLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/uploads"
+            element={
+              <ProtectedRoute>
+                <AdminLayout>
+                  <AdminUploads />
                 </AdminLayout>
               </ProtectedRoute>
             }

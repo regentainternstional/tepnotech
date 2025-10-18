@@ -20,7 +20,8 @@ const Footer = ({ sarcColor = "text-lime-400" }) => {
         {/* Column 1 - Company Info */}
         <div>
           <h2 className="text-3xl font-bold">
-            <span className={`${sarcColor}`}>TEPNO</span> TECH SERVICES PVT. LTD.
+            <span className={`${sarcColor}`}>TEPNO</span> TECH SERVICES PVT.
+            LTD.
           </h2>
           <ul className="mt-4 space-y-2 text-base text-gray-600 ">
             <li>Digital Marketing agency</li>
@@ -70,20 +71,16 @@ const Footer = ({ sarcColor = "text-lime-400" }) => {
               <Link to="/contact">Contact Us</Link>
             </li>
             <li>
-              <a href="/term.pdf" target="_blank" rel="noopener noreferrer">
-                Privacy Policy
-              </a>
-            </li>{" "}
+              <Link to="/terms">Privacy Policy</Link>
+            </li>
+
             <li>
-              <a href="/term.pdf" target="_blank" rel="noopener noreferrer">
-                Terms & Conditions
-              </a>
-            </li>{" "}
+              <Link to="/terms">Terms & Conditions</Link>
+            </li>
+
             <li>
-              <a href="/refund.pdf" target="_blank" rel="noopener noreferrer">
-                Refund Policy
-              </a>
-            </li>{" "}
+              <Link to="/refund-policy">Refund Policy</Link>
+            </li>
           </ul>
         </div>
 
@@ -111,7 +108,8 @@ const Footer = ({ sarcColor = "text-lime-400" }) => {
 
       {/* Bottom Copyright */}
       <div className="border-t mt-10 pt-4 text-center text-base text-gray-500">
-        © Copyright 2012 - 2025. All rights reserved <strong>TEPNO TECH SERVICES PVT. LTD.</strong>
+        © Copyright 2012 - 2025. All rights reserved{" "}
+        <strong>TEPNO TECH SERVICES PVT. LTD.</strong>
       </div>
     </footer>
   );

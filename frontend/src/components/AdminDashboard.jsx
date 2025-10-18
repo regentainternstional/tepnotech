@@ -22,14 +22,15 @@ const AdminDashboard = () => {
       const res = await fetch(`${import.meta.env.VITE_BACKEND_API}/payments`)
       const data = await res.json()
 
-      const totalAmount = data.reduce((sum, payment) => sum + payment.amount, 0)
+      const successfulPayments = data.filter((p) => p.status === "SUCCESS")
+      const totalAmount = successfulPayments.reduce((sum, payment) => sum + payment.amount, 0)
       const cashfreeCount = data.filter((p) => p.gateway === "cashfree").length
       const razorpayCount = data.filter((p) => p.gateway === "razorpay").length
-      const successCount = data.filter((p) => p.status === "SUCCESS").length
-      const pendingCount = data.filter((p) => p.status === "PENDING").length
+      const successCount = successfulPayments.length
+      const pendingCount = data.filter((p) => p.status === "PENDING" || p.status === "initiated").length
 
       setStats({
-        totalPayments: data.length,
+        totalPayments: successCount, // Show only successful payments count
         totalAmount,
         cashfreeCount,
         razorpayCount,
