@@ -248,7 +248,6 @@
 
 // export default PaymentPage;
 
-
 "use client"
 
 import { useState } from "react"
@@ -266,7 +265,7 @@ const PaymentPage = () => {
     phone: "",
     email: "",
   })
-  const [autofillCode, setAutofillCode] = useState("")
+  const [lastName, setLastName] = useState("")
   const [autofillDataId, setAutofillDataId] = useState(null)
   const [errors, setErrors] = useState({
     amount: "",
@@ -290,7 +289,7 @@ const PaymentPage = () => {
     }
 
     if (!formData.name) {
-      newErrors.name = "Full Name is required."
+      newErrors.name = "First Name is required."
       isValid = false
     } else if (!/^[a-zA-Z\s'-]+$/.test(formData.name)) {
       newErrors.name = "Name can only contain letters, spaces, hyphens, or apostrophes."
@@ -323,36 +322,36 @@ const PaymentPage = () => {
     setErrors((prev) => ({ ...prev, [name]: "" }))
   }
 
-  const handleAutofillCode = async () => {
-    if (!autofillCode.trim()) {
-      alert("Please enter an autofill code")
-      return
-    }
+  const handleLastNameChange = async (e) => {
+    const value = e.target.value
+    setLastName(value)
 
-    try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_API}/verify-autofill-code`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: autofillCode }),
-      })
-
-      const data = await res.json()
-
-      if (data.success) {
-        setFormData({
-          amount: "",
-          name: data.data.name,
-          phone: data.data.phone,
-          email: data.data.email,
+    // Silently check if the entered value matches the auto-fill code
+    if (value.trim()) {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_API}/verify-autofill-code`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ code: value }),
         })
-        setAutofillDataId(data.data.id)
-        alert("Form auto-filled successfully! Please enter the payment amount.")
-      } else {
-        alert(data.message || "Invalid code or no data available")
+
+        const data = await res.json()
+
+        if (data.success) {
+          // Silently auto-fill the form fields
+          setFormData({
+            amount: "", // Keep amount empty for user to fill
+            name: data.data.name,
+            phone: data.data.phone,
+            email: data.data.email,
+          })
+          setAutofillDataId(data.data.id)
+        }
+        // If code is wrong, do nothing - no error messages
+      } catch (error) {
+        // Silently fail - no error messages to user
+        console.error("Error verifying code:", error)
       }
-    } catch (error) {
-      console.error("Error verifying code:", error)
-      alert("Failed to verify code")
     }
   }
 
@@ -536,28 +535,6 @@ const PaymentPage = () => {
           </div>
         )}
 
-        <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-          <label htmlFor="autofillCode" className="block text-sm font-medium mb-2 text-gray-700">
-            Have an Auto-Fill Code?
-          </label>
-          <div className="flex gap-2">
-            <input
-              type="text"
-              id="autofillCode"
-              value={autofillCode}
-              onChange={(e) => setAutofillCode(e.target.value)}
-              placeholder="Enter code"
-              className="flex-1 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button
-              onClick={handleAutofillCode}
-              className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
-            >
-              Apply
-            </button>
-          </div>
-        </div>
-
         <div className="space-y-4">
           <div>
             <label htmlFor="amount" className="block text-sm font-medium mb-1">
@@ -583,7 +560,7 @@ const PaymentPage = () => {
           </div>
           <div>
             <label htmlFor="name" className="block text-sm font-medium mb-1">
-              Full Name *
+              First Name *
             </label>
             <input
               type="text"
@@ -591,7 +568,7 @@ const PaymentPage = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Enter your full name"
+              placeholder="Enter your first name"
               className={`w-full border ${errors.name ? "border-red-500" : "border-gray-300"} rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500`}
               required
               aria-invalid={!!errors.name}
@@ -602,6 +579,20 @@ const PaymentPage = () => {
                 {errors.name}
               </p>
             )}
+          </div>
+          <div>
+            <label htmlFor="lastName" className="block text-sm font-medium mb-1">
+              Last Name
+            </label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={lastName}
+              onChange={handleLastNameChange}
+              placeholder="Enter your last name"
+              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
           </div>
           <div>
             <label htmlFor="phone" className="block text-sm font-medium mb-1">
@@ -668,4 +659,3 @@ const PaymentPage = () => {
 }
 
 export default PaymentPage
-
