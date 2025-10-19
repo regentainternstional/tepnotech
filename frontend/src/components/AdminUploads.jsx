@@ -105,7 +105,7 @@ const AdminUploads = () => {
 
   const downloadSampleCSV = () => {
     const csvContent =
-      "amount,fullname,phone,email\n500,John Doe,9876543210,john@example.com\n1000,Jane Smith,9876543211,jane@example.com"
+      "fullname,phone,email\nJohn Doe,9876543210,john@example.com\nJane Smith,9876543211,jane@example.com"
     const blob = new Blob([csvContent], { type: "text/csv" })
     const url = window.URL.createObjectURL(blob)
     const a = document.createElement("a")
@@ -157,13 +157,6 @@ const AdminUploads = () => {
                 <tbody className="divide-y divide-gray-200">
                   <tr className="hover:bg-blue-50 transition">
                     <td className="px-4 py-3">
-                      <code className="bg-gray-100 px-2 py-1 rounded text-sm font-mono text-blue-700">amount</code>
-                    </td>
-                    <td className="px-4 py-3 text-sm text-gray-700">Payment amount (numbers only)</td>
-                    <td className="px-4 py-3 text-sm text-gray-600">500</td>
-                  </tr>
-                  <tr className="hover:bg-blue-50 transition">
-                    <td className="px-4 py-3">
                       <code className="bg-gray-100 px-2 py-1 rounded text-sm font-mono text-blue-700">fullname</code>
                     </td>
                     <td className="px-4 py-3 text-sm text-gray-700">Customer's full name</td>
@@ -194,16 +187,17 @@ const AdminUploads = () => {
                 <li>All fields are required for each row</li>
                 <li>Phone numbers must be exactly 10 digits</li>
                 <li>Email must be in valid format (e.g., user@domain.com)</li>
+                <li>Users will enter the payment amount manually in the form</li>
               </ul>
             </div>
 
             <div className="mt-3 bg-green-50 border border-green-200 rounded-lg p-3">
               <p className="text-sm text-green-800 font-semibold mb-2">Example CSV Content:</p>
               <pre className="bg-white border border-green-300 rounded p-3 text-xs font-mono text-gray-800 overflow-x-auto">
-                {`amount,fullname,phone,email
-500,John Doe,9876543210,john@example.com
-1000,Jane Smith,9876543211,jane@example.com
-750,Bob Johnson,9876543212,bob@example.com`}
+                {`fullname,phone,email
+John Doe,9876543210,john@example.com
+Jane Smith,9876543211,jane@example.com
+Bob Johnson,9876543212,bob@example.com`}
               </pre>
             </div>
           </div>
@@ -249,7 +243,7 @@ const AdminUploads = () => {
           <Upload className="w-16 h-16 text-gray-400" />
           <div className="text-center">
             <h3 className="text-lg font-semibold text-gray-800 mb-2">Upload CSV File</h3>
-            <p className="text-sm text-gray-600 mb-4">Upload a CSV file with columns: amount, fullname, phone, email</p>
+            <p className="text-sm text-gray-600 mb-4">Upload a CSV file with columns: fullname, phone, email</p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-md">
@@ -367,9 +361,6 @@ const AdminUploads = () => {
               <thead className="bg-gray-50 border-b">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Amount
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Full Name
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -392,7 +383,7 @@ const AdminUploads = () => {
               <tbody className="divide-y divide-gray-200 bg-white">
                 {uploadedData.length === 0 ? (
                   <tr>
-                    <td colSpan="7" className="px-6 py-12 text-center">
+                    <td colSpan="6" className="px-6 py-12 text-center">
                       <FileSpreadsheet className="w-12 h-12 text-gray-300 mx-auto mb-3" />
                       <p className="text-gray-500 font-medium">No data found</p>
                       <p className="text-gray-400 text-sm mt-1">
@@ -403,9 +394,6 @@ const AdminUploads = () => {
                 ) : (
                   uploadedData.map((data) => (
                     <tr key={data._id} className="hover:bg-gray-50 transition">
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="text-sm font-semibold text-gray-900">₹{data.amount.toLocaleString()}</span>
-                      </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className="text-sm text-gray-900">{data.fullname}</span>
                       </td>

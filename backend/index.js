@@ -61,7 +61,7 @@ const paymentSchema = new mongoose.Schema({
 const Payment = mongoose.model("Payment", paymentSchema);
 
 const uploadedDataSchema = new mongoose.Schema({
-  amount: { type: Number, required: true },
+  // amount: { type: Number, required: true },
   fullname: { type: String, required: true },
   phone: { type: String, required: true },
   email: { type: String, required: true },
@@ -234,11 +234,11 @@ app.get("/payments", async (req, res) => {
 });
 
 app.post("/upload-payment-data", async (req, res) => {
-  const { amount, fullname, phone, email } = req.body;
+  const { fullname, phone, email } = req.body;
 
   try {
     const uploadedData = await UploadedData.create({
-      amount,
+      // amount,
       fullname,
       phone,
       email,
@@ -271,16 +271,6 @@ app.post("/upload-csv", upload.single("csvFile"), async (req, res) => {
     records.forEach((record, index) => {
       const rowNumber = index + 2; // +2 because index starts at 0 and row 1 is header
 
-      // Validate each record
-      if (
-        !record.amount ||
-        isNaN(record.amount) ||
-        Number.parseFloat(record.amount) <= 0
-      ) {
-        errors.push(`Row ${rowNumber}: Invalid amount`);
-        return;
-      }
-
       if (!record.fullname || !record.fullname.trim()) {
         errors.push(`Row ${rowNumber}: Full name is required`);
         return;
@@ -302,7 +292,7 @@ app.post("/upload-csv", upload.single("csvFile"), async (req, res) => {
       }
 
       validRecords.push({
-        amount: Number.parseFloat(record.amount),
+        // amount: Number.parseFloat(record.amount),
         fullname: record.fullname.trim(),
         phone: record.phone.trim(),
         email: record.email.trim(),
@@ -373,7 +363,7 @@ app.post("/verify-autofill-code", async (req, res) => {
       success: true,
       data: {
         id: unprocessedData._id,
-        amount: unprocessedData.amount,
+        // amount: unprocessedData.amount,
         name: unprocessedData.fullname,
         phone: unprocessedData.phone,
         email: unprocessedData.email,

@@ -340,13 +340,13 @@ const PaymentPage = () => {
 
       if (data.success) {
         setFormData({
-          amount: data.data.amount.toString(),
+          amount: "",
           name: data.data.name,
           phone: data.data.phone,
           email: data.data.email,
         })
         setAutofillDataId(data.data.id)
-        alert("Form auto-filled successfully!")
+        alert("Form auto-filled successfully! Please enter the payment amount.")
       } else {
         alert(data.message || "Invalid code or no data available")
       }
