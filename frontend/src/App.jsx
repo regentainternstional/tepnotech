@@ -23,6 +23,7 @@ import AdminPayments from "./components/AdminPayments";
 import AdminUploads from "./components/AdminUploads";
 import TermsAndConditions from "./components/TermsAndConditions";
 import RefundPolicy from "./components/RefundPolicy";
+import Privacy from "./components/Privacy";
 function App() {
   return (
     <>
@@ -47,6 +48,7 @@ function App() {
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route
             path="/admin/dashboard"
             element={

@@ -1,226 +1,519 @@
-import { Link } from "react-router-dom"
-import { ArrowLeft, FileText, Calendar, MapPin } from "lucide-react"
+import React, { useEffect } from "react";
+import {
+  ArrowLeft,
+  FileText,
+  Clock,
+  Building,
+  Globe,
+  Smartphone,
+  Palette,
+  Settings,
+  Cloud,
+  TrendingUp,
+  CheckCircle,
+  CreditCard,
+  Mail,
+  Phone,
+  Shield,
+  Users,
+  Scale,
+  UserCheck,
+  Eye,
+  AlertTriangle,
+  XCircle,
+  Gavel,
+  Contact,
+} from "lucide-react";
 
 const TermsAndConditions = () => {
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
+  const services = [
+    { icon: Globe, name: "Website Development" },
+    { icon: Smartphone, name: "Mobile App Development" },
+    { icon: Palette, name: "UI/UX Design" },
+    { icon: Settings, name: "Software Solutions" },
+    { icon: Cloud, name: "Cloud Services" },
+    { icon: TrendingUp, name: "Digital Marketing" },
+    { icon: Users, name: "Maintenance & Support Services" },
+  ];
+
+  const eligibilityRequirements = [
+    {
+      icon: UserCheck,
+      title: "Age Requirement",
+      description: "You are at least 18 years old",
+    },
+    {
+      icon: Scale,
+      title: "Legal Authority",
+      description: "You have legal authority to enter binding agreements",
+    },
+  ];
+
+  const clientResponsibilities = [
+    {
+      icon: CheckCircle,
+      title: "Accurate Information",
+      description:
+        "Providing accurate and timely information required to complete services",
+    },
+    {
+      icon: Clock,
+      title: "Timely Approvals",
+      description:
+        "Approving drafts, content, or design within agreed timelines",
+    },
+    {
+      icon: Shield,
+      title: "Content Rights",
+      description:
+        "Ensuring all content provided doesn't infringe on third-party rights",
+    },
+  ];
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors mb-4"
+      <div className="bg-white shadow-sm border-b border-blue-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <button
+            onClick={handleGoBack}
+            className="flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors duration-200 group"
           >
-            <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm font-medium">Back to Home</span>
-          </Link>
-          <div className="flex items-start gap-4">
-            <div className="p-3 bg-blue-50 rounded-lg">
-              <FileText className="w-8 h-8 text-blue-600" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold text-slate-900 mb-2">Terms & Conditions</h1>
-              <div className="flex items-center gap-4 text-sm text-slate-600">
-                <div className="flex items-center gap-1">
-                  <Calendar className="w-4 h-4" />
-                  <span>Last updated: 10-10-2025</span>
-                </div>
-              </div>
-            </div>
-          </div>
+            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-200" />
+            <span className="font-medium">Go Back</span>
+          </button>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-white rounded-xl shadow-sm border p-8 sm:p-12">
-          {/* Introduction */}
-          <div className="mb-8 p-4 bg-blue-50 border-l-4 border-blue-600 rounded">
-            <p className="text-slate-700 leading-relaxed">
-              These Terms and Conditions, along with privacy policy or other terms ("Terms") constitute a binding
-              agreement by and between <strong>TEPNO TECH SERVICES PRIVATE LIMITED</strong>, ("Website Owner" or "we" or
-              "us" or "our") and you ("you" or "your") and relate to your use of our website, goods (as applicable) or
-              services (as applicable) (collectively, "Services").
-            </p>
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        {/* Hero Section */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6">
+            <FileText className="w-8 h-8 text-blue-600" />
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Terms and Conditions
+          </h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Welcome to{" "}
+            <span className="font-semibold text-blue-600">
+              Tepno Tech
+            </span>
+            . These terms govern your use of our website and services.
+          </p>
+          <div className="mt-4 inline-flex items-center gap-2 text-sm text-gray-500 bg-gray-50 px-3 py-1 rounded-full">
+            <Clock className="w-4 h-4" />
+            Last Updated: January 2025
+          </div>
+        </div>
+
+        {/* Introduction */}
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
+          <div className="flex items-start gap-3">
+            <FileText className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" />
+            <div>
+              <h3 className="font-semibold text-blue-800 mb-2">
+                Agreement Overview
+              </h3>
+              <p className="text-blue-700 leading-relaxed">
+                These Terms and Conditions ("Terms", "Agreement") govern your
+                use of our website{" "}
+                <span className="font-medium">info@tapnotech.in</span> and
+                the services we offer, including IT solutions, software
+                development, and related services. By accessing or using our
+                Website and purchasing our Services, you agree to be bound by
+                these Terms.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Terms Sections */}
+        <div className="space-y-8">
+          {/* Section 1: Company Information */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                <Building className="w-5 h-5 text-blue-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                1. Company Information
+              </h2>
+            </div>
+            <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
+              <h3 className="font-semibold text-blue-800 mb-4">
+                Tepno Tech
+              </h3>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <Building className="w-4 h-4 text-blue-600" />
+                  <span className="text-blue-700">Delhi, India</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 text-blue-600" />
+                  <a
+                    href="mailto:info@tapnotech.in"
+                    className="text-blue-700 hover:text-blue-800 transition-colors"
+                  >
+                    info@tapnotech.in
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 text-blue-600" />
+                  <a
+                    href="tel:+919311689277"
+                    className="text-blue-700 hover:text-blue-800 transition-colors"
+                  >
+                    +91-9311689277
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="mb-8">
-            <p className="text-slate-700 leading-relaxed">
-              By using our website and availing the Services, you agree that you have read and accepted these Terms
-              (including the Privacy Policy). We reserve the right to modify these Terms at any time and without
-              assigning any reason. It is your responsibility to periodically review these Terms to stay informed of
-              updates.
+          {/* Section 2: Services Offered */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                <Settings className="w-5 h-5 text-blue-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                2. Services Offered
+              </h2>
+            </div>
+            <p className="text-gray-700 mb-6 leading-relaxed">
+              We provide IT and software-related services including, but not
+              limited to:
             </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg"
+                >
+                  <service.icon className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                  <span className="text-gray-700 text-sm">{service.name}</span>
+                </div>
+              ))}
+            </div>
+            <div className="p-4 bg-green-50 rounded-lg border border-green-200">
+              <p className="text-green-800 text-sm">
+                <span className="font-medium">Note:</span> You can purchase our
+                services directly through the Website. Details of each service,
+                pricing, timelines, and deliverables are provided on the
+                respective service page.
+              </p>
+            </div>
           </div>
 
-          {/* Terms List */}
-          <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-slate-900 mb-4">Terms of Use</h2>
+          {/* Section 3: Eligibility */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                <UserCheck className="w-5 h-5 text-green-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                3. Eligibility
+              </h2>
+            </div>
+            <p className="text-gray-700 mb-6 leading-relaxed">
+              By using our Website and Services, you confirm that:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {eligibilityRequirements.map((requirement, index) => (
+                <div
+                  key={index}
+                  className="p-4 bg-green-50 rounded-lg border border-green-200"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <requirement.icon className="w-5 h-5 text-green-600" />
+                    <h3 className="font-semibold text-green-800">
+                      {requirement.title}
+                    </h3>
+                  </div>
+                  <p className="text-green-700 text-sm">
+                    {requirement.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
 
+          {/* Section 4: Payments */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                <CreditCard className="w-5 h-5 text-blue-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">4. Payments</h2>
+            </div>
             <div className="space-y-4">
-              <div className="flex gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-semibold mt-1">
-                  1
-                </div>
-                <p className="text-slate-700 leading-relaxed flex-1">
-                  To access and use the Services, you agree to provide true, accurate and complete information to us
-                  during and after registration, and you shall be responsible for all acts done through the use of your
-                  registered account.
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-semibold mt-1">
-                  2
-                </div>
-                <p className="text-slate-700 leading-relaxed flex-1">
-                  Neither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness,
-                  performance, completeness or suitability of the information and materials offered on this website or
-                  through the Services, for any specific purpose. You acknowledge that such information and materials
-                  may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or
-                  errors to the fullest extent permitted by law.
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-semibold mt-1">
-                  3
-                </div>
-                <p className="text-slate-700 leading-relaxed flex-1">
-                  Your use of our Services and the website is solely at your own risk and discretion. You are required
-                  to independently assess and ensure that the Services meet your requirements.
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-semibold mt-1">
-                  4
-                </div>
-                <p className="text-slate-700 leading-relaxed flex-1">
-                  The contents of the Website and the Services are proprietary to Us and you will not have any authority
-                  to claim any intellectual property rights, title, or interest in its contents.
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-semibold mt-1">
-                  5
-                </div>
-                <p className="text-slate-700 leading-relaxed flex-1">
-                  You acknowledge that unauthorized use of the Website or the Services may lead to action against you as
-                  per these Terms or applicable laws.
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-semibold mt-1">
-                  6
-                </div>
-                <p className="text-slate-700 leading-relaxed flex-1">
-                  You agree to pay us the charges associated with availing the Services.
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-semibold mt-1">
-                  7
-                </div>
-                <p className="text-slate-700 leading-relaxed flex-1">
-                  You agree not to use the website and/or Services for any purpose that is unlawful, illegal or
-                  forbidden by these Terms, or Indian or local laws that might apply to you.
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-semibold mt-1">
-                  8
-                </div>
-                <p className="text-slate-700 leading-relaxed flex-1">
-                  You agree and acknowledge that website and the Services may contain links to other third party
-                  websites. On accessing these links, you will be governed by the terms of use, privacy policy and such
-                  other policies of such third party websites.
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-semibold mt-1">
-                  9
-                </div>
-                <p className="text-slate-700 leading-relaxed flex-1">
-                  You understand that upon initiating a transaction for availing the Services you are entering into a
-                  legally binding and enforceable contract with the us for the Services.
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-semibold mt-1">
-                  10
-                </div>
-                <p className="text-slate-700 leading-relaxed flex-1">
-                  You shall be entitled to claim a refund of the payment made by you in case we are not able to provide
-                  the Service. The timelines for such return and refund will be according to the specific Service you
-                  have availed or within the time period provided in our policies (as applicable). In case you do not
-                  raise a refund claim within the stipulated time, than this would make you ineligible for a refund.
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-semibold mt-1">
-                  11
-                </div>
-                <p className="text-slate-700 leading-relaxed flex-1">
-                  Notwithstanding anything contained in these Terms, the parties shall not be liable for any failure to
-                  perform an obligation under these Terms if performance is prevented or delayed by a force majeure
-                  event.
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-semibold mt-1">
-                  12
-                </div>
-                <p className="text-slate-700 leading-relaxed flex-1">
-                  These Terms and any dispute or claim relating to it, or its enforceability, shall be governed by and
-                  construed in accordance with the laws of India.
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-semibold mt-1">
-                  13
-                </div>
-                <p className="text-slate-700 leading-relaxed flex-1">
-                  All disputes arising out of or in connection with these Terms shall be subject to the exclusive
-                  jurisdiction of the courts in Dilshad Garden, DELHI.
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-semibold mt-1">
-                  14
-                </div>
-                <p className="text-slate-700 leading-relaxed flex-1">
-                  All concerns or communications relating to these Terms must be communicated to us using the contact
-                  information provided on this website.
+              <p className="text-gray-700 leading-relaxed">
+                All payments must be made in full at the time of purchase,
+                unless otherwise agreed upon. We use secure third-party payment
+                gateways for processing transactions.
+              </p>
+              <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
+                <p className="text-orange-800 text-sm">
+                  <span className="font-medium">Important:</span> We reserve the
+                  right to change our prices at any time.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Footer Info */}
-          <div className="mt-12 pt-8 border-t">
-            <div className="flex items-start gap-3 p-4 bg-slate-50 rounded-lg">
-              <MapPin className="w-5 h-5 text-slate-600 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-sm font-medium text-slate-900 mb-1">Jurisdiction</p>
-                <p className="text-sm text-slate-600">Dilshad Garden, DELHI, India</p>
+          {/* Section 5: Order Confirmation */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                <Mail className="w-5 h-5 text-blue-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                5. Order Confirmation
+              </h2>
+            </div>
+            <p className="text-gray-700 leading-relaxed">
+              Once you place an order, you will receive an email confirmation.
+              This does not signify our acceptance of your order. We reserve the
+              right to accept or decline any order for any reason.
+            </p>
+          </div>
+
+          {/* Section 6: Refunds and Cancellations */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                <XCircle className="w-5 h-5 text-red-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                6. Refunds and Cancellations
+              </h2>
+            </div>
+            <div className="p-4 bg-red-50 rounded-lg border border-red-200">
+              <p className="text-red-700">
+                Please refer to our{" "}
+                <span className="font-semibold">
+                  Refund & Cancellation Policy
+                </span>{" "}
+                for detailed information. Refunds may be issued in accordance
+                with the terms defined in that policy, based on service progress
+                and delivery status.
+              </p>
+            </div>
+          </div>
+
+          {/* Section 7: Intellectual Property */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                <Shield className="w-5 h-5 text-purple-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                7. Intellectual Property
+              </h2>
+            </div>
+            <div className="space-y-4">
+              <p className="text-gray-700 leading-relaxed">
+                All content, designs, source code, graphics, and materials
+                provided by Tepno Tech remain our intellectual
+                property unless otherwise agreed in writing.
+              </p>
+              <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
+                <p className="text-purple-800 text-sm">
+                  <span className="font-medium">Agreement:</span> You agree not
+                  to copy, reproduce, or distribute our proprietary content
+                  without our permission.
+                </p>
               </div>
             </div>
+          </div>
+
+          {/* Section 8: Client Responsibilities */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                <Users className="w-5 h-5 text-green-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                8. Client Responsibilities
+              </h2>
+            </div>
+            <p className="text-gray-700 mb-6 leading-relaxed">
+              You are responsible for:
+            </p>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              {clientResponsibilities.map((responsibility, index) => (
+                <div
+                  key={index}
+                  className="p-4 bg-green-50 rounded-lg border border-green-200"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <responsibility.icon className="w-5 h-5 text-green-600" />
+                    <h3 className="font-semibold text-green-800 text-sm">
+                      {responsibility.title}
+                    </h3>
+                  </div>
+                  <p className="text-green-700 text-xs">
+                    {responsibility.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Section 9: Confidentiality */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                <Eye className="w-5 h-5 text-blue-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                9. Confidentiality
+              </h2>
+            </div>
+            <p className="text-gray-700 leading-relaxed">
+              Both parties agree to maintain confidentiality over shared
+              sensitive business or personal data, unless required by law or
+              with prior written consent.
+            </p>
+          </div>
+
+          {/* Section 10: Limitation of Liability */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                <AlertTriangle className="w-5 h-5 text-orange-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                10. Limitation of Liability
+              </h2>
+            </div>
+            <div className="space-y-4">
+              <p className="text-gray-700 leading-relaxed">
+                Tepno Tech will not be held liable for any indirect,
+                incidental, or consequential damages arising from the use of our
+                services.
+              </p>
+              <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
+                <p className="text-orange-800 text-sm">
+                  <span className="font-medium">Maximum Liability:</span> Our
+                  maximum liability shall not exceed the total amount paid by
+                  you for the services.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Section 11: Termination */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                <XCircle className="w-5 h-5 text-red-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                11. Termination
+              </h2>
+            </div>
+            <p className="text-gray-700 leading-relaxed">
+              We reserve the right to terminate access to our Website or
+              Services if we believe that you have violated these Terms.
+            </p>
+          </div>
+
+          {/* Section 12: Governing Law */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                <Gavel className="w-5 h-5 text-blue-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                12. Governing Law
+              </h2>
+            </div>
+            <p className="text-gray-700 leading-relaxed">
+              These Terms shall be governed by the laws of India. Any disputes
+              arising shall be subject to the jurisdiction of the courts located
+              in{" "}
+              <span className="font-semibold text-blue-600">Delhi, India</span>.
+            </p>
+          </div>
+
+          {/* Section 13: Modifications */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                <FileText className="w-5 h-5 text-blue-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                13. Modifications
+              </h2>
+            </div>
+            <p className="text-gray-700 leading-relaxed">
+              We reserve the right to modify or replace these Terms at any time.
+              Continued use of the Website after any changes constitutes
+              acceptance of those changes.
+            </p>
+          </div>
+
+          {/* Section 14: Contact Us */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                <Contact className="w-5 h-5 text-blue-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                14. Contact Us
+              </h2>
+            </div>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              If you have questions about our No Refund Policy or need
+              clarification before placing an order, you can contact us:
+            </p>
+            <ul className="text-gray-700 leading-relaxed space-y-1">
+              <li>
+                <strong>Email:</strong>{" "}
+                <a
+                  href="mailto:info@tapnotech.in"
+                  className="text-blue-600 hover:underline"
+                >
+                  info@tapnotech.in
+                </a>
+              </li>
+              <li>
+                <strong>Phone:</strong>{" "}
+                <a
+                  href="tel:+919311689277"
+                  className="text-blue-600 hover:underline"
+                >
+                  +91-9311689277
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="mt-12 text-center">
+          <div className="p-6 bg-gray-50 rounded-xl border border-gray-200">
+            <p className="text-gray-600 text-sm">
+              By using our services, you acknowledge that you have read,
+              understood, and agree to be bound by these Terms and Conditions.
+            </p>
+            <p className="text-gray-500 text-xs mt-2">
+              © 2025 Tepno Tech. All rights reserved.
+            </p>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TermsAndConditions
+export default TermsAndConditions;

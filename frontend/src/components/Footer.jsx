@@ -71,7 +71,7 @@ const Footer = ({ sarcColor = "text-lime-400" }) => {
               <Link to="/contact">Contact Us</Link>
             </li>
             <li>
-              <Link to="/terms">Privacy Policy</Link>
+              <Link to="/privacy">Privacy Policy</Link>
             </li>
 
             <li>

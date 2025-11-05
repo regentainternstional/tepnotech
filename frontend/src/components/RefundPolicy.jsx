@@ -1,209 +1,277 @@
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import {
   ArrowLeft,
-  RefreshCw,
-  AlertCircle,
+  Shield,
   Clock,
+  Users,
+  AlertTriangle,
+  Phone,
+  Mail,
   CheckCircle,
+  XCircle,
+  Settings,
+  Smartphone,
+  Globe,
+  Palette,
+  Cloud,
+  TrendingUp,
+  Contact,
 } from "lucide-react";
 
-export default function RefundPolicy() {
+const RefundPolicy = () => {
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
+  const services = [
+    { icon: Globe, name: "Website Development" },
+    { icon: Smartphone, name: "Mobile App Development" },
+    { icon: Settings, name: "Software Solutions" },
+    { icon: Palette, name: "UI/UX Design" },
+    { icon: Cloud, name: "Maintenance, Hosting, or Cloud Services" },
+    { icon: TrendingUp, name: "Digital Marketing Services" },
+  ];
+
+  const supportFeatures = [
+    {
+      icon: CheckCircle,
+      title: "Limited Revisions",
+      description: "Based on your selected service package",
+    },
+    {
+      icon: Users,
+      title: "Technical Support",
+      description: "Ongoing support and minor adjustments",
+    },
+  ];
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b sticky top-0 z-10">
+      <div className="bg-white shadow-sm border-b border-blue-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link
-            to="/"
-            className="inline-flex items-center text-blue-600 hover:text-blue-700 transition-colors"
+          <button
+            onClick={handleGoBack}
+            className="flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors duration-200 group"
           >
-            <ArrowLeft className="w-5 h-5 mr-2" />
-            Back to Home
-          </Link>
+            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-200" />
+            <span className="font-medium">Go Back</span>
+          </button>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Title Section */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        {/* Hero Section */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
-            <RefreshCw className="w-8 h-8 text-blue-600" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6">
+            <Shield className="w-8 h-8 text-blue-600" />
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Cancellation & Refund Policy
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Return and Refund Policy
           </h1>
-          <p className="text-gray-600">Last updated on 10-10-2025 17:31:04</p>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Thank you for choosing{" "}
+            <span className="font-semibold text-blue-600">
+              Tepno Tech
+            </span>{" "}
+            for your IT and software service needs.
+          </p>
+          <div className="mt-4 inline-flex items-center gap-2 text-sm text-gray-500 bg-gray-50 px-3 py-1 rounded-full">
+            <Clock className="w-4 h-4" />
+            Last Updated: January 2025
+          </div>
         </div>
 
-        {/* Content Card */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 sm:p-12 space-y-8">
-          {/* Introduction */}
-          <div className="prose max-w-none">
-            <p className="text-lg text-gray-700 leading-relaxed">
-              <strong>TEPNO TECH SERVICES PRIVATE LIMITED</strong> believes in
-              helping its customers as far as possible, and has therefore a
-              liberal cancellation policy.
+        {/* Important Notice */}
+        <div className="bg-red-50 border border-red-200 rounded-xl p-6 mb-8">
+          <div className="flex items-start gap-3">
+            <AlertTriangle className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" />
+            <div>
+              <h3 className="font-semibold text-red-800 mb-2">
+                Important Notice
+              </h3>
+              <p className="text-red-700">
+                As a service-based business offering custom IT and software
+                solutions, all purchases made are{" "}
+                <span className="font-semibold">final and non-refundable</span>.
+                By placing an order with us, you acknowledge and agree to the
+                terms outlined below.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Policy Sections */}
+        <div className="space-y-8">
+          {/* Section 1: No Refund Policy */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                <XCircle className="w-5 h-5 text-blue-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                1. No Refund Policy
+              </h2>
+            </div>
+            <p className="text-gray-700 mb-6 leading-relaxed">
+              Due to the nature of our services — which are tailored,
+              time-bound, and labor-intensive — we do{" "}
+              <span className="font-semibold text-red-600">
+                not offer refunds
+              </span>{" "}
+              for any services once the payment has been made.
+            </p>
+            <p className="text-gray-700 mb-4 font-medium">
+              This includes, but is not limited to:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg"
+                >
+                  <service.icon className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                  <span className="text-gray-700">{service.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Section 2: Service Agreement */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                <Users className="w-5 h-5 text-blue-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                2. Service Agreement
+              </h2>
+            </div>
+            <p className="text-gray-700 leading-relaxed">
+              Before initiating any service, we discuss the full scope,
+              timeline, deliverables, and cost with the client. Once the work
+              begins, the service is considered in progress and{" "}
+              <span className="font-semibold text-red-600">non-refundable</span>{" "}
+              under all circumstances.
             </p>
           </div>
 
-          {/* Policy Points */}
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 flex items-center">
-              <CheckCircle className="w-6 h-6 text-green-600 mr-3" />
-              Under this policy:
-            </h2>
-
-            {/* Point 1 */}
-            <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <Clock className="w-6 h-6 text-blue-600 mt-1" />
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    Immediate Cancellation Requests
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    Cancellations will be considered only if the request is made
-                    immediately after placing the order. However, the
-                    cancellation request may not be entertained if the orders
-                    have been communicated to the vendors/merchants and they
-                    have initiated the process of shipping them.
-                  </p>
-                </div>
+          {/* Section 3: Revisions & Support */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                <CheckCircle className="w-5 h-5 text-green-600" />
               </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                3. Revisions & Support
+              </h2>
             </div>
-
-            {/* Point 2 */}
-            <div className="bg-amber-50 border-l-4 border-amber-600 p-6 rounded-r-lg">
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <AlertCircle className="w-6 h-6 text-amber-600 mt-1" />
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    Perishable Items
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    <strong>TEPNO TECH SERVICES PRIVATE LIMITED</strong> does
-                    not accept cancellation requests for perishable items like
-                    flowers, eatables etc. However, refund/replacement can be
-                    made if the customer establishes that the quality of product
-                    delivered is not good.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Point 3 */}
-            <div className="bg-red-50 border-l-4 border-red-600 p-6 rounded-r-lg">
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <AlertCircle className="w-6 h-6 text-red-600 mt-1" />
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    Damaged or Defective Items
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed mb-3">
-                    In case of receipt of damaged or defective items please
-                    report the same to our Customer Service team. The request
-                    will, however, be entertained once the merchant has checked
-                    and determined the same at his own end.
-                  </p>
-                  <div className="bg-white p-4 rounded-lg border border-red-200">
-                    <p className="text-sm font-semibold text-red-800 mb-2">
-                      Important Timeline:
-                    </p>
-                    <ul className="text-sm text-gray-700 space-y-1">
-                      <li>
-                        • This should be reported within{" "}
-                        <strong>same day</strong> of receipt of the products
-                      </li>
-                      <li>
-                        • If the product received is not as shown on the site or
-                        as per your expectations, you must bring it to the
-                        notice of our customer service within{" "}
-                        <strong>same day</strong> of receiving the product
-                      </li>
-                    </ul>
+            <p className="text-gray-700 mb-6 leading-relaxed">
+              We are committed to client satisfaction. While we do not offer
+              refunds, we do provide:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {supportFeatures.map((feature, index) => (
+                <div
+                  key={index}
+                  className="p-4 bg-green-50 rounded-lg border border-green-200"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <feature.icon className="w-5 h-5 text-green-600" />
+                    <h3 className="font-semibold text-green-800">
+                      {feature.title}
+                    </h3>
                   </div>
-                  <p className="text-gray-700 leading-relaxed mt-3">
-                    The Customer Service Team after looking into your complaint
-                    will take an appropriate decision.
+                  <p className="text-green-700 text-sm">
+                    {feature.description}
                   </p>
                 </div>
-              </div>
+              ))}
             </div>
-
-            {/* Point 4 */}
-            <div className="bg-purple-50 border-l-4 border-purple-600 p-6 rounded-r-lg">
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <CheckCircle className="w-6 h-6 text-purple-600 mt-1" />
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    Warranty Products
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    In case of complaints regarding products that come with a
-                    warranty from manufacturers, please refer the issue to them.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Point 5 */}
-            <div className="bg-green-50 border-l-4 border-green-600 p-6 rounded-r-lg">
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <RefreshCw className="w-6 h-6 text-green-600 mt-1" />
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    Refund Processing Time
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    In case of any Refunds approved by the <strong>TEPNO TECH SERVICES PRIVATE LIMITED</strong>, it'll take <strong>7-10 Days</strong> for the refund to be
-                    processed to the end customer. if refund is approved refund
-                    amount is credited to original mode of payment within 7-10
-                    business
-                  </p>
-                </div>
-              </div>
+            <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <p className="text-blue-800 text-sm">
+                <span className="font-medium">Important:</span> Please ensure
+                your expectations, goals, and requirements are clearly
+                communicated before we start the project.
+              </p>
             </div>
           </div>
 
-          {/* Contact Section */}
-          <div className="mt-12 pt-8 border-t border-gray-200">
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 text-center">
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Need Help?
-              </h3>
-              <p className="text-gray-700 mb-4">
-                If you have any questions about our refund policy, please
-                contact our customer service team.
-              </p>
-              <Link
-                to="/contact"
-                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
-              >
-                Contact Support
-              </Link>
+          {/* Section 4: Exceptions */}
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                <AlertTriangle className="w-5 h-5 text-orange-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                4. Exceptions
+              </h2>
             </div>
+            <p className="text-gray-700 leading-relaxed">
+              There are <span className="font-semibold">no exceptions</span> to
+              the no-refund policy unless required by law. If a duplicate
+              payment or technical error occurs, please notify us within{" "}
+              <span className="font-semibold text-blue-600">
+                3 business days
+              </span>
+              , and we will review and resolve the issue appropriately. if refund is approved refund amount is credited to original mode of payment within 7-10 business days
+            </p>
+          </div>
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                <Contact className="w-5 h-5 text-blue-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                5. Contact Us
+              </h2>
+            </div>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              If you have questions about our No Refund Policy or need
+              clarification before placing an order, you can contact us:
+            </p>
+            <ul className="text-gray-700 leading-relaxed space-y-1">
+              <li>
+                <strong>Email:</strong>{" "}
+                <a
+                  href="mailto:info@tapnotech.in"
+                  className="text-blue-600 hover:underline"
+                >
+                  info@tapnotech.in
+                </a>
+              </li>
+              <li>
+                <strong>Phone:</strong>{" "}
+                <a
+                  href="tel:+919311689277"
+                  className="text-blue-600 hover:underline"
+                >
+                  +91-9311689277
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* Footer Note */}
-        <div className="mt-8 text-center text-sm text-gray-600">
-          <p>
-            By using our services, you agree to this cancellation and refund
-            policy.
-          </p>
+        {/* Footer */}
+        <div className="mt-12 text-center">
+          <div className="p-6 bg-gray-50 rounded-xl border border-gray-200">
+            <p className="text-gray-600 text-sm">
+              By using our services, you acknowledge that you have read,
+              understood, and agree to be bound by this Return and Refund
+              Policy.
+            </p>
+            <p className="text-gray-500 text-xs mt-2">
+              © 2025 Tepno Tech. All rights reserved.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default RefundPolicy;
