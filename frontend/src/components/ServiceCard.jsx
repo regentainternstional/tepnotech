@@ -20,28 +20,28 @@ const ServiceCard = () => {
       image: devIcon,
       description:
         "Create stunning, user-friendly websites that enhance your brand identity and deliver seamless digital experiences.",
-      basicPrice: "2000",
+      basicPrice: "1000 - 1000 Rs",
     },
     {
       title: "Search Engine Optimization",
       image: ppcIcon,
       description:
         "If you appear first in search engines then you grow & succeed first!",
-      basicPrice: "1000",
+      basicPrice: "3000 - 10000 Rs",
     },
     {
       title: "Web Development",
       image: hostingIcon,
       description:
         "Our unique and responsive web design enables your website to attract more customers.",
-      basicPrice: "1500",
+      basicPrice: "2000 - 100000 Rs",
     },
     {
       title: "Graphic Designing",
       image: seoIcon,
       description:
         "Transform ideas into stunning visuals with Graphic Designing — crafting logos, posters, and creatives that make your brand stand out.",
-      basicPrice: "1000",
+      basicPrice: "100 - 10000 Rs",
     },
     // {
     //   title: "Digital Marketing",

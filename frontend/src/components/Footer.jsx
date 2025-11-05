@@ -42,7 +42,7 @@ const Footer = ({ sarcColor = "text-lime-400" }) => {
         </div>
 
         {/* Column 2 - More Services */}
-        <div>
+        {/* <div>
           <h3 className="text-2xl font-semibold mb-4">More Services</h3>
           <ul className="space-y-2 text-base text-gray-600">
             <li>Ads Management Services</li>
@@ -50,7 +50,7 @@ const Footer = ({ sarcColor = "text-lime-400" }) => {
             <li>ONLINE Marketing</li>
             <li>Best Digital Marketing Company</li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Column 3 - Quick Links */}
         <div>
