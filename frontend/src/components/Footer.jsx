@@ -91,7 +91,8 @@ const Footer = ({ sarcColor = "text-lime-400" }) => {
             <li className="flex items-start gap-3">
               <FaMapMarkerAlt className="mt-1 text-xl" />
               <a href="#" target="_blank" rel="noopener noreferrer">
-                Delhi,India
+                First Floor, F-107, Aditya Trade Tower, Plot No-4 Dilshad
+                Garden, New Delhi, Shahdara, Delhi - 110095
               </a>
             </li>
             <li className="flex items-center gap-3">

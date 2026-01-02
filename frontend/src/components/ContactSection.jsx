@@ -45,7 +45,8 @@ const ContactSection = () => {
             </div>
             <div>
               <p className="font-semibold text-lg">
-                Delhi,India
+                First Floor, F-107, Aditya Trade Tower, Plot No-4 Dilshad
+                Garden, New Delhi, Shahdara, Delhi - 110095
               </p>
             </div>
           </div>
